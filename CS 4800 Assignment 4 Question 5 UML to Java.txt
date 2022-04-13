@@ -1,0 +1,92 @@
+class AccountHolder {
+	protected int ID;
+	protected String address;
+
+	public AccountHolder(int ID, String address) {
+		this.ID = ID;
+		this.address = address;
+	}
+
+	public int getNextID() {
+		int random = new Random().nextInt(1000000) + 1;
+		return random;
+	}
+
+
+	class Account {
+		private AccountHolder holder;
+		private double balance = 0.0;
+
+		public Account(double amt, AccountHolder holder) {
+			this.balance = amt;
+			this.holder = holder;
+		}
+
+		public void deposit(double amt) {
+			this.balance += amt;
+		}
+
+		public void withdraw(double amt) {
+			if (amt <= balance)
+				balance -= amt;
+			else
+				System.out.println("Not enough money!");
+		}
+
+		public double getBalance() {
+			return this.balance;
+		}
+
+		public AccountHolder getHolder() {
+			return this.holder;
+		}
+
+		public void setBalance(double amt) {
+			this.balance = amt;
+		}
+		public void setHolder(AccountHolder holder) {
+			this.holder = holder;
+		}
+
+	}
+}
+
+class IndividualHolder extends AccountHolder implements Util { // IndividualHolder inherits AccountHolder
+
+	private String name;
+	private String SSN;
+
+	public IndividualHolder(int ID, String address, String name, String SSN) {
+		this.ID = ID;
+		this.address = address;
+		this.name = name;
+		this.SSN = SSN;
+	}
+
+	public String convertNameUpperCase() {
+		return name.toUpperCase();
+	}
+
+	public String getName() return this.name;
+	public String getSSN() return this.SSN;
+	public void setName(String name) this.name = name;
+	public void setSSN(String SSN) this.SSN = SSN;
+}
+class CorporateHolder extends AccountHolder { // CorporateHolder inherits AccountHolder
+
+	private String contact;
+
+	public IndividualHolder(int ID, String address, String contact) {
+		this.ID = ID;
+		this.address = address;
+		this.contact = contact;
+	}
+
+	public String getContact() return this.contact;
+	public void setContact(String contact) this.contact = contact;
+}
+
+interface Util {
+	public String convertNameUpperCase);
+}
+
